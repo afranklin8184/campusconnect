@@ -2,6 +2,11 @@ import webapp2
 import jinja2
 import os
 
+
+from login import MainHandler
+from login import CssiUser
+
+
 the_jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
@@ -9,7 +14,7 @@ the_jinja_env = jinja2.Environment(
 
 class WelcomePage(webapp2.RequestHandler):
     def get(self): #for a get request
-        index_template = the_jinja_env.get_template('templates/welcome.html')
+        welcome_template = the_jinja_env.get_template('templates/welcome.html')
         self.response.write(welcome_template.render())
 class SignupPage(webapp2.RequestHandler):
     def get(self): #for a get request
@@ -24,7 +29,7 @@ class MatchPage(webapp2.RequestHandler):
         match_template = the_jinja_env.get_template('templates/match.html')
         self.response.write(match_template.render())
 class HomePage(webapp2.RequestHandler):
-    def get(self): #for a get request
+    def post(self): #for a get request
         home_template = the_jinja_env.get_template('templates/home.html')
         self.response.write(home_template.render())
 
@@ -33,6 +38,7 @@ app = webapp2.WSGIApplication([
     ('/signup', SignupPage),
     ('/profile', ProfilePage),
     ('/match', MatchPage),
-    ('/Home', HomePage)
+    ('/Home', HomePage),
+    ('/login', MainHandler)
 
 ], debug=True)
