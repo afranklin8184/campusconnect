@@ -1,0 +1,11 @@
+html {
+  background-color: darkseagreen;
+  color: white;
+}
+h1 {
+  text-align: center;
+}
+#contact {
+  border:  15px ridge;
+  text-align: right;
+}

@@ -3,12 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>Profile</title>
+    <link rel="stylesheet" href="/static/profile.css">
   </head>
   <body>
     <h1>{{first_name}}'s Campus Connect Profile</h1>
+    <div id="contact">
+      <h2>Contact Info</h2>
+      <p> Email: {{email}} <br>
+          Phone Number: {{phone_num}} <br>
+      </p>
+
+    </div>
     <div>
-      <h2>Your Matches</h2>
-      <p>{{matches}}</p>
+      <h2>Your Teachable Skills</h2>
+      <ul>
+        <li>{{teachable_skills}}</li>
+      </ul>
+
     </div>
   </body>
 </html>
