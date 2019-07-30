@@ -14,5 +14,6 @@ class Student_Profile(ndb.Model):
     email=ndb.StringProperty(required = True)
     college=ndb.StringProperty(required = True)
     pic=ndb.BlobProperty(required=False)
+    # id= ndb.StringProperty(required=True)
     # def post(self):
     #     home_template = the_jinja_env.get_template('templates/home.html')
