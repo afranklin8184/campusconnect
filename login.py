@@ -1,7 +1,14 @@
 import webapp2
+import jinja2
+import os
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
+
+the_jinja_env = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
 
 class CssiUser(ndb.Model):
   first_name = ndb.StringProperty()
@@ -32,10 +39,10 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write('''
             Welcome to Campus Connect, %s!  Please sign up! <br>
             <form method="post" action="/Home">
-            <input type="text" name="first_name" value="Fist Name">
+            <input type="text" name="first_name" value="First Name">
             <input type="text" name="last_name" value="Last Name">
             <input type="text" name="phone_num" value="Phone Number">
-                <select name="college
+                <select name="college"
                     <option value="">College/University</option>
                     <option value="mit">MIT</option>
                     <option value="auburn">Auburn University</option>
@@ -43,7 +50,7 @@ class MainHandler(webapp2.RequestHandler):
                     <option value="ud">University of Delware</option>
                     <option value="stanford">Stanford</option>
                 </select>
-                <select multiple name="Skills Needed">
+                <select multiple name="skills_needed">
                     <option value="">Skills Needed</option>
                     <option value="cosmo">Cosmetology</option>
                     <option value="cooking">Cooking</option>
@@ -70,10 +77,14 @@ class MainHandler(webapp2.RequestHandler):
   def post(self):
     # Code to handle a first-time registration from the form:
     user = users.get_current_user()
-    cssi_user = CssiUser(
+    student_profile = CssiUser(
         first_name=self.request.get('first_name'),
         last_name=self.request.get('last_name'),
-        email=user.nickname())
+        phone_num=self.request.get('phone_num'),
+        college=self.request.get('college'),
+        skills_needed=self.request.get('skills_needed'),
+        teachable_skills=self.request.get('teachable_skills'),
+        email=user.nickname()),
     cssi_user.put()
     self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
         cssi_user.first_name)

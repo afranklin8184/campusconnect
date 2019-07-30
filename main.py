@@ -24,14 +24,39 @@ class ProfilePage(webapp2.RequestHandler):
     def get(self): #for a get request
         profile_template = the_jinja_env.get_template('templates/profile.html')
         self.response.write(profile_template.render())
+    def post(self): #for a get request
+        home_template = the_jinja_env.get_template('templates/home.html')
+        student_profile={
+            "first_name":self.request.get('first_name'),
+            "last_name":self.request.get('last_name'),
+            "phone_num":self.request.get('phone_num'),
+            "skills_needed":self.request.get('skills_needed'),
+            "college":self.request.get('college'),
+            "teachable_skills":self.request.get('teachable_skills'),
+            "email":self.request.get('email'),
+        }
+        self.response.write(home_template.render(student_profile))
 class MatchPage(webapp2.RequestHandler):
     def get(self): #for a get request
         match_template = the_jinja_env.get_template('templates/match.html')
         self.response.write(match_template.render())
 class HomePage(webapp2.RequestHandler):
-    def post(self): #for a get request
+    def get(self): #for a get request
         home_template = the_jinja_env.get_template('templates/home.html')
         self.response.write(home_template.render())
+    def post(self): #for a get request
+        home_template = the_jinja_env.get_template('templates/home.html')
+        student_profile={
+            "first_name":self.request.get('first_name'),
+            "last_name":self.request.get('last_name'),
+            "phone_num":self.request.get('phone_num'),
+            "skills_needed":self.request.get('skills_needed'),
+            "college":self.request.get('college'),
+            "teachable_skills":self.request.get('teachable_skills'),
+            "email":self.request.get('email'),
+        }
+        self.response.write(home_template.render(student_profile))
+
 
 app = webapp2.WSGIApplication([
     ('/', WelcomePage), #this maps the root url to the Main Page Handler

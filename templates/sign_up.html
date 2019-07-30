@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p>Welcome to Campus Connect, %s!  Please sign up! <br><p>
+    <form method="post" action="/Home">
+    <input type="text" name="first_name" value="Fist Name">
+    <input type="text" name="last_name" value="Last Name">
+    <input type="text" name="phone_num" value="Phone Number">
+        <select name="college"
+            <option value="">College/University</option>
+            <option value="mit">MIT</option>
+            <option value="auburn">Auburn University</option>
+            <option value="harvard">Harvard</option>
+            <option value="ud">University of Delware</option>
+            <option value="stanford">Stanford</option>
+        </select>
+        <select multiple name="skills_needed">
+            <option value="">Skills Needed</option>
+            <option value="cosmo">Cosmetology</option>
+            <option value="cooking">Cooking</option>
+            <option value="tutoring">Tutoring</option>
+            <option value="selfD">Self Defense</option>
+        </select>
+        <select multiple="" name="Teachable Skills">
+            <option value="">Teachable Skills</option>
+            <option value="cosmo">Cosmetology</option>
+            <option value="cooking">Cooking</option>
+            <option value="tutoring">Tutoring</option>
+            <option value="selfD">Self Defense</option>
+        </select>
+    <input type="submit">
+    </form><br> %s <br>
+    ''' % (email_address, signout_link_html))
+  </body>
+</html>
