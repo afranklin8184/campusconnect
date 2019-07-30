@@ -50,21 +50,21 @@ class MainHandler(webapp2.RequestHandler):
                     <option value="ud">University of Delware</option>
                     <option value="stanford">Stanford</option>
                 </select>
-                <select multiple name="skills_needed">
+                <select class="select" multiple name="skills_needed">
                     <option value="">Skills Needed</option>
                     <option value="cosmo">Cosmetology</option>
                     <option value="cooking">Cooking</option>
                     <option value="tutoring">Tutoring</option>
                     <option value="selfD">Self Defense</option>
                 </select>
-                <select multiple="" name="Teachable Skills">
+                <select class="select" multiple="" name="Teachable Skills">
                     <option value="">Teachable Skills</option>
                     <option value="cosmo">Cosmetology</option>
                     <option value="cooking">Cooking</option>
                     <option value="tutoring">Tutoring</option>
                     <option value="selfD">Self Defense</option>
                 </select>
-            <input encode="multipart/form-data" type="file" name="pic">
+            <input encode="multipart/form-data" accept="image/png, image/jpeg" type="file" multiple="false" name="pic">
             <input type="submit">
             </form><br> %s <br>
             ''' % (email_address, signout_link_html))
@@ -85,6 +85,7 @@ class MainHandler(webapp2.RequestHandler):
         college=self.request.get('college'),
         skills_needed=self.request.get('skills_needed'),
         teachable_skills=self.request.get('teachable_skills'),
+        pic=self.request.Post.get('pic'),
         email=user.nickname()),
     cssi_user.put()
     self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
