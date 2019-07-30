@@ -64,6 +64,7 @@ class MainHandler(webapp2.RequestHandler):
                     <option value="tutoring">Tutoring</option>
                     <option value="selfD">Self Defense</option>
                 </select>
+            <input encode="multipart/form-data" type="file" name="pic">
             <input type="submit">
             </form><br> %s <br>
             ''' % (email_address, signout_link_html))
