@@ -10,10 +10,10 @@ the_jinja_env = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class CssiUser(ndb.Model):
-  first_name = ndb.StringProperty()
-  last_name = ndb.StringProperty()
-  email = ndb.StringProperty()
+# class CssiUser(ndb.Model):
+#   first_name = ndb.StringProperty()
+#   last_name = ndb.StringProperty()
+#   email = ndb.StringProperty()
 
 class MainHandler(webapp2.RequestHandler):
   def get(self):
@@ -23,14 +23,14 @@ class MainHandler(webapp2.RequestHandler):
       signout_link_html = '<a href="%s">sign out</a>' % (
           users.create_logout_url('/login'))
       email_address = user.nickname()
-      cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
+      cc_user = CssiUser.query().filter(CssiUser.email == email_address).get()
       # If the user is registered...
-      if cssi_user:
+      if cc_user:
         # Greet them with their personal information
         self.response.write('''
             Welcome %s %s (%s)! <br> %s <br>''' % (
-              cssi_user.first_name,
-              cssi_user.last_name,
+              cc_user.first_name,
+              cc_user.last_name,
               email_address,
               signout_link_html))
       # If the user isn't registered...
@@ -71,6 +71,7 @@ class MainHandler(webapp2.RequestHandler):
             # # <input type="submit">
             # </form><br> %s <br>
             # ''' % (email_address, signout_link_html))
+
     else:
       # If the user isn't logged in...
       login_url = users.create_login_url('/home')
@@ -81,15 +82,15 @@ class MainHandler(webapp2.RequestHandler):
   def post(self):
     # Code to handle a first-time registration from the form:
     user = users.get_current_user()
-    student_profile = CssiUser(
+    cc_user = CssiUser(
         first_name=self.request.get('first_name'),
         last_name=self.request.get('last_name'),
         phone_num=self.request.get('phone_num'),
         college=self.request.get('college'),
-        skills_needed=",".join(self.request.get_all('skills_needed')),
+        skills_needed=(self.request.get_all('skills_needed')),
         teachable_skills=self.request.get('teachable_skills'),
         pic=self.request.Post.get('pic'),
         email=user.nickname()),
-    cssi_user.put()
+    cc_user.put()
     self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
-        cssi_user.first_name)
+        cp_user.first_name)
