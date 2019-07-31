@@ -36,41 +36,44 @@ class MainHandler(webapp2.RequestHandler):
       # If the user isn't registered...
       else:
         # Offer a registration form for a first-time visitor:
-        self.response.write('''
-            Welcome to Campus Connect, %s!  Please sign up! <br>
-            <form method="post" action="/Home">
-            <input type="text" name="first_name" value="First Name">
-            <input type="text" name="last_name" value="Last Name">
-            <input type="text" name="phone_num" value="Phone Number">
-                <select name="college"
-                    <option value="">College/University</option>
-                    <option value="mit">MIT</option>
-                    <option value="auburn">Auburn University</option>
-                    <option value="harvard">Harvard</option>
-                    <option value="ud">University of Delware</option>
-                    <option value="stanford">Stanford</option>
-                </select>
-                <select class="select" multiple name="skills_needed">
-                    <option value="">Skills Needed</option>
-                    <option value="cosmo">Cosmetology</option>
-                    <option value="cooking">Cooking</option>
-                    <option value="tutoring">Tutoring</option>
-                    <option value="selfD">Self Defense</option>
-                </select>
-                <select class="select" multiple="" name="Teachable Skills">
-                    <option value="">Teachable Skills</option>
-                    <option value="cosmo">Cosmetology</option>
-                    <option value="cooking">Cooking</option>
-                    <option value="tutoring">Tutoring</option>
-                    <option value="selfD">Self Defense</option>
-                </select>
-            <input encode="multipart/form-data" accept="image/png, image/jpeg" type="file" multiple="false" name="pic">
-            <input type="submit">
-            </form><br> %s <br>
-            ''' % (email_address, signout_link_html))
+        signup_template = the_jinja_env.get_template('templates/sign_up.html')
+        self.response.write(signup_template)
+
+            # # Welcome to Campus Connect, %s!  Please sign up! <br>
+            # # <form method="post" action="/Home">
+            # # <input type="text" name="first_name" value="First Name">
+            # # <input type="text" name="last_name" value="Last Name">
+            # # <input type="text" name="phone_num" value="Phone Number">
+            # # <input type="checkbox" name="skills_needed" value="Cosmetology"
+            # #     <select name="college"
+            # #         <option value="">College/University</option>
+            # #         <option value="mit">MIT</option>
+            # #         <option value="auburn">Auburn University</option>
+            # #         <option value="harvard">Harvard</option>
+            # #         <option value="ud">University of Delware</option>
+            # #         <option value="stanford">Stanford</option>
+            # #     </select>
+            # #     <select class="select" multiple name="skills_needed">
+            # #         <option value="">Skills Needed</option>
+            # #         <option value="cosmo">Cosmetology</option>
+            # #         <option value="cooking">Cooking</option>
+            # #         <option value="tutoring">Tutoring</option>
+            # #         <option value="selfD">Self Defense</option>
+            # #     </select>
+            # #     <select class="select" multiple="" name="Teachable Skills">
+            # #         <option value="">Teachable Skills</option>
+            # #         <option value="cosmo">Cosmetology</option>
+            # #         <option value="cooking">Cooking</option>
+            # #         <option value="tutoring">Tutoring</option>
+            # #         <option value="selfD">Self Defense</option>
+            # #     </select>
+            # # <input encode="multipart/form-data" accept="image/png, image/jpeg" type="file" multiple="false" name="pic">
+            # # <input type="submit">
+            # </form><br> %s <br>
+            # ''' % (email_address, signout_link_html))
     else:
       # If the user isn't logged in...
-      login_url = users.create_login_url('/Home')
+      login_url = users.create_login_url('/home')
       login_html_element = '<a href="%s">Sign in</a>' % login_url
       # Prompt the user to sign in.
       self.response.write('Please log in.<br>' + login_html_element)

@@ -90,7 +90,7 @@ app = webapp2.WSGIApplication([
     ('/signup', SignupPage),
     ('/profile', ProfilePage),
     ('/match', MatchPage),
-    ('/Home', HomePage),
+    ('/home', HomePage),
     ('/login', MainHandler)
 
 ], debug=True)
