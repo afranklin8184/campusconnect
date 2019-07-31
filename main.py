@@ -5,8 +5,7 @@ import os
 from google.appengine.api import users
 from google.appengine.ext import ndb
 from login import MainHandler
-from login import CssiUser
-from models import Student_Profile
+from login import Student_Profile
 
 
 the_jinja_env = jinja2.Environment(
@@ -56,18 +55,31 @@ class MatchPage(webapp2.RequestHandler):
 class HomePage(webapp2.RequestHandler):
     def get(self): #for a get request
         home_template = the_jinja_env.get_template('templates/home.html')
-        self.response.write(home_template.render())
-        student=users.get_current_user()
-        email_address = student.nickname()
-        cc_user = CssiUser.query().filter(CssiUser.email == email_address).get()
-        query1= Student_Profile.query()
-        query1= Student_Profile.query()
-        query2= query1.filter(Student_Profile.email_address==email_address)
-        student_list=query2.fetch()
-        for can in student_list:
-            if set(student.skills_needed) & set(can.teachable_skills):
-                return can.first_name
 
+        student=users.get_current_user()
+        email_address = student.nickname()+"@gmail.com"
+        print(email_address)
+        cc_user = Student_Profile.query().filter(Student_Profile.email == email_address).get()
+        print(cc_user)
+        cans = Student_Profile.query().filter(Student_Profile.college == cc_user.college).fetch()
+        matches=[]
+        print(cc_user)
+
+        for can in cans:
+            if set(cc_user.skills_needed.split(",")) & set(can.teachable_skills.split(",")):
+                matches.append(can)
+        student_profile={
+            "first_name":cc_user.first_name,
+            "last_name":cc_user.last_name,
+            "phone_num":cc_user.phone_num,
+            "skills_needed":cc_user.skills_needed,
+            "college":cc_user.college,
+            "teachable_skills":cc_user.teachable_skills,
+            "email":cc_user.email,
+            "pic":cc_user.pic,
+            "matches":matches
+        }
+        self.response.write(home_template.render(student_profile))
     def post(self): #for a get request
         home_template = the_jinja_env.get_template('templates/home.html')
         student=Student_Profile(
@@ -78,7 +90,7 @@ class HomePage(webapp2.RequestHandler):
             teachable_skills=",".join(self.request.get_all('teachable_skills')),
             email=self.request.get('email'),
             college=self.request.get('college'),
-            id=self.request.get('id'),
+            # id=self.request.get('id'),
             # pic=self.request.get('pic'))
             pic=None)
         student_key= student.put()
@@ -94,18 +106,6 @@ class HomePage(webapp2.RequestHandler):
             "pic":self.request.get('pic')
         }
         # print(student_profile.skills_needed())
-
-        query1= Student_Profile.query()
-        query2= query1.filter(Student_Profile.college==student.college)
-        student_list=query2.fetch()
-
-
-
-        for can in student_list:
-            if set(student.skills_needed) & set(can.teachable_skills):
-            return can.first_name
-
-
         self.response.write(home_template.render(student_profile))
 
 
