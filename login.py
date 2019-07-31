@@ -37,8 +37,8 @@ class MainHandler(webapp2.RequestHandler):
       else:
         # Offer a registration form for a first-time visitor:
         signup_template = the_jinja_env.get_template('templates/sign_up.html')
-        self.response.write(signup_template)
-
+        # self.response.write(signup_template)
+        self.response.write(signup_template.render())
             # # Welcome to Campus Connect, %s!  Please sign up! <br>
             # # <form method="post" action="/Home">
             # # <input type="text" name="first_name" value="First Name">

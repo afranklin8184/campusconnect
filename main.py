@@ -17,10 +17,10 @@ class WelcomePage(webapp2.RequestHandler):
     def get(self): #for a get request
         welcome_template = the_jinja_env.get_template('templates/welcome.html')
         self.response.write(welcome_template.render())
-class SignupPage(webapp2.RequestHandler):
-    def get(self): #for a get request
-        aboutme_template = the_jinja_env.get_template('templates/sign_up.html')
-        self.response.write(sign_up_template.render())
+# class SignupPage(webapp2.RequestHandler):
+#     def get(self): #for a get request
+#         aboutme_template = the_jinja_env.get_template('templates/sign_up.html')
+#         self.response.write(sign_up_template.render())
 class ProfilePage(webapp2.RequestHandler):
     def get(self): #for a get request
         profile_template = the_jinja_env.get_template('templates/profile.html')
@@ -87,7 +87,7 @@ class HomePage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', WelcomePage), #this maps the root url to the Main Page Handler
-    ('/signup', SignupPage),
+    # ('/signup', SignupPage),
     ('/profile', ProfilePage),
     ('/match', MatchPage),
     ('/home', HomePage),

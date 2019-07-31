@@ -4,6 +4,7 @@ html {
   font-family: Verdana, sans-serif;
   font-size: 1.9em;
   color: white;
+  display:flex
 }
 
 #logo {
