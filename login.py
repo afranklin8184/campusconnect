@@ -86,7 +86,7 @@ class MainHandler(webapp2.RequestHandler):
         last_name=self.request.get('last_name'),
         phone_num=self.request.get('phone_num'),
         college=self.request.get('college'),
-        skills_needed=self.request.get('skills_needed'),
+        skills_needed=",".join(self.request.get_all('skills_needed')),
         teachable_skills=self.request.get('teachable_skills'),
         pic=self.request.Post.get('pic'),
         email=user.nickname()),

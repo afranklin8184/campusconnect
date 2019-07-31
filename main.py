@@ -62,8 +62,8 @@ class HomePage(webapp2.RequestHandler):
             first_name=self.request.get('first_name'),
             last_name=self.request.get('last_name'),
             phone_num=self.request.get('phone_num'),
-            skills_needed=self.request.get('skills_needed'),
-            teachable_skills=self.request.get('teachable_skills'),
+            skills_needed=",".join(self.request.get_all('skills_needed')),
+            teachable_skills=",".join(self.request.get_all('teachable_skills')),
             email=self.request.get('email'),
             college=self.request.get('college'),
             id=self.request.get('id'),
@@ -71,7 +71,6 @@ class HomePage(webapp2.RequestHandler):
             pic=None)
         student_key= student.put()
         id = student_key.id()
-
         student_profile={
             "first_name":self.request.get('first_name'),
             "last_name":self.request.get('last_name'),
