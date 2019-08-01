@@ -37,14 +37,7 @@ class SignUpPage(webapp2.RequestHandler):
       # If the user is registered...
       if student_profile:
         # Greet them with their personal information
-        self.redirect('/profile')
-        # self.response.write('''
-        #     Welcome %s %s (%s)! <br> %s <br>''' % (
-        #       student_profile.first_name,
-        #       student_profile.last_name,
-        #       email_address,
-        #       signout_link_html))
-      # If the user isn't registered...
+        self.redirect('/profile?id='+student_key.urlsafe())
       else:
         # Offer a registration form for a first-time visitor:
         signup_template = the_jinja_env.get_template('templates/sign_up.html')
@@ -74,7 +67,7 @@ class SignUpPage(webapp2.RequestHandler):
     student_key = student_profile.put()
     student_record = student_key.get()
     print('Added user {}'.format(student_record))
-    self.redirect('/profile')
+    self.redirect('/profile?id='+student_key.urlsafe())
     #
     # self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
     #     cp_user.first_name)

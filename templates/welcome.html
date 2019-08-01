@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<link rel="stylesheet" href="../static/style.css"></link>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../static/style.css"></link>
     <title>Welcome To Campus Connect!</title>
-  <h1><img id="logo" src="../static/logo.png"></img>Campus Connect<img id="logo" src="../static/logo.png"></img></h1>
+    <style>
+      a:link{
+        color:white
+      }
+      a:visited{
+        color:white
+      }
+      a:hover{
+        color:white
+      }
+      a:active{
+        color:white
+      }
+    </style>
+
   </head>
   <body>
-<img id= "background" src="../static/background.jpg"></img>
-<p>Campus Connect allows you to exchange services with other students that attend your college.</p>
-<p id="sen1">Click <a href="/signup">here</a> to get started.  <a href="{{login_link}}">{{users_url}}</a> to sign in</p> 
-<!-- sign in box goes here -->
-<!-- this is where the sign up hyperlink will be -->
+    <div id="welcome">
+      <div class="bg-image"></div>
+
+      <div class="bg-text">
+        <h1>Campus Connect</h1>
+        <p style="font-size:18px">Campus Connect allows you to exchange services with other students that attend your college.</p>
+        <div id="loginbtn">
+            <p id="sen1"><a href="{{login_link}}">{{users_url}}</a></p>
+        </div>
+      </div>
+
+    </div>
 
 </body>
 </html>
