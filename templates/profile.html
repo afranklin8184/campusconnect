@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <style>
+
+    #pic {
+      float:right;
+    }
+    </style>
     <meta charset="utf-8">
     <title>Profile</title>
-    <link rel="stylesheet" href="/static/profile.css">
+    <link rel="stylesheet" href="../static/profile.css"></link>
+<a href="/home">Back</a>
   </head>
   <body>
     <h1>{{first_name}}'s Campus Connect Profile</h1>
     <div id="contact">
       <h2>Contact Info</h2>
+
+      <img id="pic" scr:"{{pic}}"></img>
       <p> Email: {{email}} <br>
           Phone Number: {{phone_num}} <br>
       </p>
@@ -21,5 +30,11 @@
       </ul>
 
     </div>
+
+    <h2> Needed Skills <h2>
+        <ul>
+          <li>{{skills_needed}}  </li>
+        </ul>
+
   </body>
 </html>

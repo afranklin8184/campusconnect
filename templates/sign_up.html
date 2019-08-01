@@ -29,12 +29,11 @@
   <body>
     <h1>Welcome to Campus Connect!</h1>
     <h2>Please sign up below!</h2>
-    <form method="post" action="/home">
+    <form method="post" action="/signup">
     <input type="text" name="first_name" value="First Name">
     <input type="text" name="last_name" value="Last Name">
     <input type="text" name="phone_num" value="Phone Number">
     <select name="college"
-      <option value="">College/University</option>
       <option value="mit">MIT</option>
       <option value="auburn">Auburn University</option>
       <option value="harvard">Harvard</option>
@@ -83,14 +82,6 @@
           <input type="checkbox" value="selfD" name="teachable_skills"
         </label>
 
-
-        <!-- <select class="select" multiple="" name="Teachable Skills">
-            <option value="">Teachable Skills</option>
-            <option value="cosmo">Cosmetology</option>
-            <option value="cooking">Cooking</option>
-            <option value="tutoring">Tutoring</option>
-            <option value="selfD">Self Defense</option>
-        </select> -->
     <p><b>Insert a profile picture below</b></p>
     <input encode="multipart/form-data" accept="image/png, image/jpeg" type="file" multiple="false" name="pic">
     <input type="submit">
