@@ -37,7 +37,7 @@ class SignUpPage(webapp2.RequestHandler):
       # If the user is registered...
       if student_profile:
         # Greet them with their personal information
-        self.redirect('/profile?id='+student_key.urlsafe())
+        self.redirect('/profile?id='+student_profile.key.urlsafe())
       else:
         # Offer a registration form for a first-time visitor:
         signup_template = the_jinja_env.get_template('templates/sign_up.html')

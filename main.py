@@ -61,13 +61,14 @@ class ProfilePage(webapp2.RequestHandler):
         profile_template = the_jinja_env.get_template('templates/profile.html')
         student=users.get_current_user()
         email_address = student.nickname()
-
+        ts=student_profile.teachable_skills
+        t=ts.split(',')
         student=Student_Profile(
             first_name=self.request.get('first_name'),
             last_name=self.request.get('last_name'),
             phone_num=self.request.get('phone_num'),
             skills_needed=self.request.get_all('skills_needed'),
-            teachable_skills=self.request.get_all('teachable_skills'),
+            teachable_skills=t,
             email=email_address,
             college=self.request.get('college'),
             pic=None)
@@ -97,7 +98,7 @@ class MatchPage(webapp2.RequestHandler):
             print(can)
 
 
-        self.response.write(match_template.render())
+        self.response.write(can.first_name)
 
 class HomePage(webapp2.RequestHandler):
     def get(self): #for a get request
