@@ -93,7 +93,8 @@ class MatchPage(webapp2.RequestHandler):
                 if set(student_profile.skills_needed) & set(can.teachable_skills):
                     matches.append(can)
         print("hello world")
-        print(matches)
+        for match in matches:
+            print(can)
 
 
         self.response.write(match_template.render())
