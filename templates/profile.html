@@ -25,16 +25,22 @@
     </div>
     <div>
       <h2>Your Teachable Skills</h2>
-      <ul>
-        <li>{{teachable_skills}}</li>
-      </ul>
+      <ol>
+        <li>{{teachable_skills[0]}}</li>
+        <li>{{teachable_skills[1]}}</li>
+        <li>{{teachable_skills[2]}}</li>
+        <li>{{teachable_skills[3]}}</li>
+      </ol>
 
     </div>
     <div>
       <h2> Needed Skills <h2>
-          <ul>
-            <li>{{skills_needed}}  </li>
-          </ul>
+          <ol>
+            <li>{{skills_needed[0]}}</li>
+            <li>{{skills_needed[1]}}</li>
+            <li>{{skills_needed[2]}}</li>
+            <li>{{skills_needed[3]}}</li>
+          </ol>
     </div>
     <div>
       <a href='/match?id=%s' %student_key.urlsafe()></a>

@@ -40,16 +40,31 @@ class ProfilePage(webapp2.RequestHandler):
             for can in cans:
                 if set(student_profile.skills_needed) & set(can.teachable_skills):
                     matches.append(can)
-            # ts=student_profile.teachable_skills
-            # t=ts.split(',')
-
+            # if len(student_profile.teachable_skills) ==1:
+            #     ts[]=student_profile.teachable_skills
+            #     t= ts.strip('[]')
+            #     return t
+            # else:
+            #     ts=student_profile.teachable_skills
+            #     t=', '.join(ts)
+            #     return t
+            # ss='student_profile.skills_needed'.encode('ascii','ignore')
+            # ts='student_profile.teachable_skills'.encode('ascii','ignore')
             student_profile={
                 "first_name":student_profile.first_name,
                 "last_name":student_profile.last_name,
                 "phone_num":student_profile.phone_num,
                 "skills_needed":student_profile.skills_needed,
+                # "skills_needed1":student_profile.skills_needed[1],
+                # "skills_needed2":student_profile.skills_needed[2],
+                # "skills_needed3":student_profile.skills_needed[3],
+                # "skills_needed4":student_profile.skills_needed[4],
                 "college":student_profile.college,
                 "teachable_skills":student_profile.teachable_skills,
+                # "teachable_skills1":student_profile.teachable_skills[1],
+                # "teachable_skills4":student_profile.teachable_skills[4],
+                # "teachable_skills3":student_profile.teachable_skills[3],
+                # "teachable_skills2":student_profile.teachable_skills[2],
                 "email":email_address,
                 "pic":student_profile.pic,
                 "matches":matches,
@@ -61,14 +76,24 @@ class ProfilePage(webapp2.RequestHandler):
         profile_template = the_jinja_env.get_template('templates/profile.html')
         student=users.get_current_user()
         email_address = student.nickname()
-        ts=student_profile.teachable_skills
-        t=ts.split(',')
+        # if len(student_profile.teachable_skills) ==1:
+        #     ts=student_profile.teachable_skills
+        #     t= ts.strip('[]')
+        #     return t
+        # else:
+        #     ts[]=student_profile.teachable_skills
+        #     t=', '.join(ts)
+        #     return t
+        # ss='self.request.get_all("skills_needed")'.encode('ascii','ignore')
+        # ts='self.request.get_all("teachable_skills")'.encode('ascii','ignore')
         student=Student_Profile(
             first_name=self.request.get('first_name'),
             last_name=self.request.get('last_name'),
             phone_num=self.request.get('phone_num'),
             skills_needed=self.request.get_all('skills_needed'),
-            teachable_skills=t,
+            teachable_skills= self.request.get_all('teachable_skills'),
+            # skills_needed=ss,
+            # teachable_skills= ts,
             email=email_address,
             college=self.request.get('college'),
             pic=None)
@@ -78,6 +103,7 @@ class ProfilePage(webapp2.RequestHandler):
 
 class MatchPage(webapp2.RequestHandler):
     def get(self): #for a get request
+        template_data = login.get_user_login_data()
         match_template = the_jinja_env.get_template('templates/match.html')
         student_key=ndb.Key(urlsafe=self.request.get('id'))
         student=users.get_current_user()
@@ -96,10 +122,40 @@ class MatchPage(webapp2.RequestHandler):
         print("hello world")
         for match in matches:
             print(can)
+        self.response.write(match_template.render(template_data))
+        # self.response.write(can.first_name)
+    def post(self): #for a get request
+        match_template = the_jinja_env.get_template('templates/match.html')
+        student_key=ndb.Key(urlsafe=self.request.get('id'))
+        student=users.get_current_user()
+        email_address = student.nickname()
+        student_profile = Student_Profile.query().filter(Student_Profile.email == email_address).get()
+        # print(student_profile)
+        # matches={}
+        matches=[]
+        if student_profile == None:
+            print("no matches")
+            self.redirect("/signup")
+        else:
+            cans = Student_Profile.query().filter(Student_Profile.college == student_profile.college).fetch()
+            for can in cans:
+                if set(student_profile.skills_needed) & set(can.teachable_skills):
+                    match={can.first_name,can.last_name,can.phone_num, can.email}
+                    matches.append(match)
+                    # matches[can]= {
+                    #     matches[can]["name"]:can.first_name + can.last_name,
+                    #     matches[can]["email_address"]:can.email,
+                    #     matches[can]["phone_num"]:can.phone_num,
+                    #     matches[can]["skills_needed"]:can.skills_needed,
+                    #     matches[can]["teachable_skills"]:can.teachable_skills
+                    #     }
+            return matches
+        print("hello world")
+        for match in matches:
+            print(matches["match"])
 
-
-        self.response.write(can.first_name)
-
+        self.response.write(match_template.render(matches))
+        # self.response.write(match_template.render())
 class HomePage(webapp2.RequestHandler):
     def get(self): #for a get request
         home_template = the_jinja_env.get_template('templates/home.html')

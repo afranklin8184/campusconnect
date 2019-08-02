@@ -2,9 +2,72 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Match</title>
+    <style>
+      html {
+        font-family: Verdana, sans-serif;
+        font-size: 1.5em;
+        color: white;
+      }
+      .bg-match{
+        height: 100vh;
+        background-image:url("../static/idk.jpg");
+        background-attachment: fixed;
+        background-color:green;
+        filter: blur(8px);
+        -webkit-filter: blur(8px);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+        font-family: Verdana, sans-serif;
+        font-size: 1.9em;
+        color: white;
+      }
+      .bg-text {
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0, 0.55); /* Black w/opacity/see-through */
+        color: white;
+        font-weight: bold;
+        border: 3px solid #f1f1f1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 80%;
+        padding: 20px;
+        text-align: center;
+      }
+      a:link{
+        color:white
+      }
+      a:visited{
+        color:white
+      }
+      a:hover{
+        color:white
+      }
+      a:active{
+        color:white
+      }
+      body{
+        margin: 0px;
+      }
+    </style>
   </head>
   <body>
-    <h>{{matches}}</h>
+    <div class="bg-text">
+      <p id="sen1"><a href="{{login_link}}">{{users_url}}</a></p>
+      <p1><a href='/profile?id='+%student_key.urlsafe()></a><p1>
+      <h1>Your Matches</h1>
+      <ol>
+        <li>{{matches}}</li>
+      </ol>
+      <!-- <p> {{email}}</p>
+      <img src="{{pic}}"></img>
+      <p>Service Providers: {{provider}}</p>
+      <p>Service Seekers: {{seeker}}</p> -->
+    </div>
   </body>
 </html>
