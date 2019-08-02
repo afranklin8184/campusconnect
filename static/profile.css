@@ -1,9 +1,36 @@
-html {
-  background-color: darkseagreen;
+body {
+  background-image: url("/static/bookcase.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0px;
   color: white;
+}
+.bg-text {
+/* Fallback color */
+background-color: rgba(0,0,0, 0.6); /* Black w/opacity/see-through */
+color: white;
+font-weight: bold;
+border: 3px solid #f1f1f1;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 2;
+width: 80%;
+padding: 20px;
+text-align: center;
 }
 h1 {
   text-align: center;
+}
+#nskills{
+  text-align: right;
+}
+#tskills{
+  text-align: left;
+
 }
 #contact {
   border:  15px ridge;

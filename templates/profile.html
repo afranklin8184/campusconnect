@@ -9,18 +9,19 @@
     </style>
     <meta charset="utf-8">
     <title>Profile</title>
-    <link rel="stylesheet" href="../static/profile.css"></link>
+    <link rel="stylesheet" href="/static/profile.css"></link>
 <p>Click <a href="{{match_url}}">here</a> to view your matches</p>
   </head>
   <body>
-    <h1>{{first_name}}'s Campus Connect Profile</h1>
-    <div id="contact">
-      <h2>Contact Info</h2>
+    <div class="bg-text">
+      <h1>{{first_name}}'s Campus Connect Profile</h1>
+      <div id="contact">
+        <h2>Contact Info</h2>
 
-      <img id="pic" scr:"{{pic}}"></img>
-      <p> Email: {{email}} <br>
-          Phone Number: {{phone_num}} <br>
-      </p>
+        <img id="pic" scr:"{{pic}}"></img>
+        <p> Email: {{email}} <br>
+            Phone Number: {{phone_num}} <br>
+        </p>
 
     </div>
     <div>
@@ -46,6 +47,18 @@
       <a href='/match?id=%s' %student_key.urlsafe()></a>
     </div>
 
+
+      </div>
+      <div id="nskills">
+        <h2> Needed Skills <h2>
+
+              {{skills_needed}}
+
+      </div>
+      <div>
+        <a href='/match?id=%s' %student_key.urlsafe()></a>
+      </div>
+    </div>
 
   </body>
 </html>
