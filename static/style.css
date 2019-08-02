@@ -1,32 +1,53 @@
 .bg-image{
-height: 100vh;
-background-image: url("/static/new-background.jpg");
-background-attachment: fixed;
-filter: blur(3px);
--webkit-filter: blur(3px);
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-text-align: center;
-font-family: Verdana, sans-serif;
-font-size: 1.9em;
-color: white;
-}
+  height: 100vh;
+  background-image: url("/static/idk.jpg");
+  background-attachment: fixed;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  font-family: Verdana, sans-serif;
+  font-size: 1.9em;
+  color: white;
+  }
 .bg-text {
-background-color: rgb(0,0,0); /* Fallback color */
-background-color: rgba(0,0,0, 0.55); /* Black w/opacity/see-through */
-color: white;
-font-weight: bold;
-border: 3px solid #f1f1f1;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-z-index: 2;
-width: 80%;
-padding: 20px;
-text-align: center;
-}
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.55); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+  }
 body{
 margin: 0px;
+}
+html {
+  font-family: Verdana, sans-serif;
+  font-size: 1.5em;
+  color: white;
+}
+#logout{
+  text-align:right;
+  font-size:1.em
+}
+a:link{
+  color:white
+}
+a:visited{
+  color:white
+}
+a:hover{
+  color:white
+}
+a:active{
+  color:white
 }

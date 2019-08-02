@@ -102,32 +102,43 @@ class ProfilePage(webapp2.RequestHandler):
         self.redirect('/profile')
 
 class MatchPage(webapp2.RequestHandler):
-    def get(self): #for a get request
-        template_data = login.get_user_login_data()
-        match_template = the_jinja_env.get_template('templates/match.html')
-        self.response.write(match_template.render(template_data))
+    # def get(self): #for a get request
+    #     template_data = login.get_user_login_data()
+    #     match_template = the_jinja_env.get_template('templates/match.html')
+    #     self.response.write(match_template.render(template_data))
     def get(self):
+        print "starting get method"
+        template_data = login.get_user_login_data()
+
         match_template = the_jinja_env.get_template('templates/match.html')
         student_key=ndb.Key(urlsafe=self.request.get('id'))
         student=users.get_current_user()
         email_address = student.nickname()
         student_profile = Student_Profile.query().filter(Student_Profile.email == email_address).get()
-        # print(student_profile)
+        print(student_profile)
         matches=[]
+        dict={}
         if student_profile == None:
             print("no matches")
             self.redirect("/signup")
         else:
+            print "have a match"
             cans = Student_Profile.query().filter(Student_Profile.college == student_profile.college).fetch()
+            print cans
             for can in cans:
                 if set(student_profile.skills_needed) & set(can.teachable_skills):
-                    matches.append(can)
-            return matches
+                    matches.append(can.first_name+" "+can.last_name+"; Phone Number: "+can.phone_num+"; Teachable Skills: "+can.teachable_skills[0] +", "+can.teachable_skills[1]+ " " +"; Skills looking to learn: "+can.skills_needed[0]+", "+can.skills_needed[1])
+                    # matches.append(can.first_name+" "+can.last_name+" Phone Number:"+can.phone_num
+            template_data["matches"] = matches
+            # if dict == None:
+            #     dict[0]="No Matches"
         print("hello world")
-        for match in matches:
-            print(can)
-        self.response.write(match_template.render(matches))
-        # self.response.write(can.first_name)
+        print dict
+
+        # for match in matches:
+        #     print match
+        self.response.write(match_template.render(template_data))
+        # self.response.write(match_template.render(template_data))
     def post(self): #for a get request
         match_template = the_jinja_env.get_template('templates/match.html')
         student_key=ndb.Key(urlsafe=self.request.get('id'))
@@ -144,8 +155,8 @@ class MatchPage(webapp2.RequestHandler):
             cans = Student_Profile.query().filter(Student_Profile.college == student_profile.college).fetch()
             for can in cans:
                 if set(student_profile.skills_needed) & set(can.teachable_skills):
-                    match={can.first_name,can.last_name,can.phone_num, can.email}
-                    matches.append(match)
+                    # match={can.first_name,can.last_name,can.phone_num, can.email}
+                    matches.append(can)
                     # matches[can]= {
                     #     matches[can]["name"]:can.first_name + can.last_name,
                     #     matches[can]["email_address"]:can.email,
@@ -153,6 +164,8 @@ class MatchPage(webapp2.RequestHandler):
                     #     matches[can]["skills_needed"]:can.skills_needed,
                     #     matches[can]["teachable_skills"]:can.teachable_skills
                     #     }
+                if matches == None:
+                    ma
             return matches
         print("hello world")
         for match in matches:
