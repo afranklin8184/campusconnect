@@ -12,6 +12,7 @@ body {
 background-color: rgba(0,0,0, 0.6); /* Black w/opacity/see-through */
 color: white;
 font-weight: bold;
+font-family: 'Nunito', sans-serif;
 border: 3px solid #f1f1f1;
 position: absolute;
 top: 50%;
@@ -19,8 +20,13 @@ left: 50%;
 transform: translate(-50%, -50%);
 z-index: 2;
 width: 80%;
-padding: 20px;
+padding: 20px;}
+h2{
 text-align: center;
+}
+.ol{
+  text-align:left;
+  font-size:20px
 }
 h1 {
   text-align: center;
@@ -33,6 +39,18 @@ h1 {
 
 }
 #contact {
-  border:  15px ridge;
+  border:  5px ridge;
   text-align: right;
+}
+a:link{
+  color:white
+}
+a:visited{
+  color:white
+}
+a:hover{
+  color:white
+}
+a:active{
+  color:white
 }

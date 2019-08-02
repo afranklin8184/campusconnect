@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     <style>
-
+    html{
+    }
     #pic {
       float:right;
     }
@@ -10,7 +12,6 @@
     <meta charset="utf-8">
     <title>Profile</title>
     <link rel="stylesheet" href="/static/profile.css"></link>
-<p>Click <a href="{{match_url}}">here</a> to view your matches</p>
   </head>
   <body>
     <div class="bg-text">
@@ -26,39 +27,25 @@
     </div>
     <div>
       <h2>Your Teachable Skills</h2>
-      <ol>
+      <ol class="ol">
         <li>{{teachable_skills[0]}}</li>
         <li>{{teachable_skills[1]}}</li>
         <li>{{teachable_skills[2]}}</li>
         <li>{{teachable_skills[3]}}</li>
       </ol>
-
     </div>
     <div>
       <h2> Needed Skills <h2>
-          <ol>
-            <li>{{skills_needed[0]}}</li>
-            <li>{{skills_needed[1]}}</li>
-            <li>{{skills_needed[2]}}</li>
-            <li>{{skills_needed[3]}}</li>
-          </ol>
+      <ol class="ol">
+        <li>{{skills_needed[0]}}</li>
+        <li>{{skills_needed[1]}}</li>
+        <li>{{skills_needed[2]}}</li>
+        <li>{{skills_needed[3]}}</li>
+      </ol>
+      <p>Click <a href="{{match_url}}">here</a> to view your matches</p>
     </div>
     <div>
       <a href='/match?id=%s' %student_key.urlsafe()></a>
     </div>
-
-
-      </div>
-      <div id="nskills">
-        <h2> Needed Skills <h2>
-
-              {{skills_needed}}
-
-      </div>
-      <div>
-        <a href='/match?id=%s' %student_key.urlsafe()></a>
-      </div>
-    </div>
-
   </body>
 </html>
