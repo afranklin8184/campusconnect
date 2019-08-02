@@ -23,6 +23,7 @@ width: 80%;
 padding: 20px;}
 h2{
 text-align: center;
+font-size:30px
 }
 .ol{
   text-align:left;
@@ -40,7 +41,8 @@ h1 {
 }
 #contact {
   border:  5px ridge;
-  text-align: right;
+  text-align: center;
+  font-size: 20px
 }
 a:link{
   color:white

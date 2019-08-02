@@ -65,10 +65,10 @@ class ProfilePage(webapp2.RequestHandler):
                 # "teachable_skills4":student_profile.teachable_skills[4],
                 # "teachable_skills3":student_profile.teachable_skills[3],
                 # "teachable_skills2":student_profile.teachable_skills[2],
-                "email":email_address,
+                "email":email_address+"@gmail.com",
                 "pic":student_profile.pic,
                 "matches":matches,
-                "match_url":match_url
+                "match_url":match_url,
             }
             self.response.write(profile_template.render(student_profile))
     def post(self): #for a get request
@@ -127,9 +127,11 @@ class MatchPage(webapp2.RequestHandler):
             print cans
             for can in cans:
                 if set(student_profile.skills_needed) & set(can.teachable_skills):
-                    matches.append(can.first_name+" "+can.last_name+"; Phone Number: "+can.phone_num+"; Teachable Skills: "+can.teachable_skills[0] +", "+can.teachable_skills[1]+ " " +"; Skills looking to learn: "+can.skills_needed[0]+", "+can.skills_needed[1])
+                    matches.append(can.first_name+" "+can.last_name+"; Phone Number: "+can.phone_num+"; Teachable Skills: "+can.teachable_skills[0] +", "+can.teachable_skills[0]+ " " +"; Skills looking to learn: "+can.skills_needed[0]+", "+can.skills_needed[0])
                     # matches.append(can.first_name+" "+can.last_name+" Phone Number:"+can.phone_num
             template_data["matches"] = matches
+        profile_url='/profile?id=%s' %student_key.urlsafe()
+        template_data["profile_url"]=profile_url
             # if dict == None:
             #     dict[0]="No Matches"
         print("hello world")

@@ -1,6 +1,6 @@
 .bg-image{
   height: 100vh;
-  background-image: url("/static/idk.jpg");
+  background-image: url("/static/new-background.jpg");
   background-attachment: fixed;
   filter: blur(3px);
   -webkit-filter: blur(3px);
