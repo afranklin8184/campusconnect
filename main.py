@@ -105,6 +105,9 @@ class MatchPage(webapp2.RequestHandler):
     def get(self): #for a get request
         template_data = login.get_user_login_data()
         match_template = the_jinja_env.get_template('templates/match.html')
+        self.response.write(match_template.render(template_data))
+    def get(self):
+        match_template = the_jinja_env.get_template('templates/match.html')
         student_key=ndb.Key(urlsafe=self.request.get('id'))
         student=users.get_current_user()
         email_address = student.nickname()
@@ -119,10 +122,11 @@ class MatchPage(webapp2.RequestHandler):
             for can in cans:
                 if set(student_profile.skills_needed) & set(can.teachable_skills):
                     matches.append(can)
+            return matches
         print("hello world")
         for match in matches:
             print(can)
-        self.response.write(match_template.render(template_data))
+        self.response.write(match_template.render(matches))
         # self.response.write(can.first_name)
     def post(self): #for a get request
         match_template = the_jinja_env.get_template('templates/match.html')
